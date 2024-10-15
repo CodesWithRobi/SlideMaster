@@ -13,8 +13,12 @@
   "permissions": ["activeTab", "scripting"],
   "content_scripts": [
     {
-      "matches": ["*://docs.google.com/presentation/*"],
+      "matches": ["https://docs.google.com/presentation/*"],
       "js": ["app.js"]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "/icons/fullscreen.svg"
+  }
 }

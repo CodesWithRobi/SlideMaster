@@ -1,4 +1,3 @@
-alert("THis works");
 const bottomToolbar = document.querySelector("#filmstrip-controls > div");
 
 let fullscreenBtn = document.createElement("div");
@@ -16,9 +15,9 @@ const toggleButton = document.createElement("div");
 toggleButton.classList.add();
 toggleButton.setAttribute("role", "button");
 toggleButton.setAttribute("tabindex", "0");
-toggleButton.setAttribute("aria-label", "Hide filmstrip");
-toggleButton.setAttribute("data-tooltip", "Hide filmstrip");
-toggleButton.style.userSelect = "none";
+toggleButton.setAttribute("aria-label", "FullScreen");
+toggleButton.setAttribute("data-tooltip", "FullScreen");
+// toggleButton.style.userSelect = "none";
 
 // Create outer box div
 const outerBox = document.createElement("div");
@@ -55,11 +54,52 @@ if (bottomToolbar) {
   bottomToolbar.appendChild(visibilityControlsContainer);
 }
 
-// Optional: Add toggle functionality (if needed)
+// -----------------------------------------------------------------------------------
+
+function enterFullScreen() {
+  const element = document.body; // or use any specific element you want
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    // Firefox
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullscreen) {
+    // Chrome, Safari, and Opera
+    element.webkitRequestFullscreen();
+  } else if (element.msRequestFullscreen) {
+    // IE/Edge
+    element.msRequestFullscreen();
+  }
+}
+
+function exitFullScreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    // Firefox
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    // Chrome, Safari, and Opera
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    // IE/Edge
+    document.msExitFullscreen();
+  }
+}
+
 toggleButton.addEventListener("click", () => {
   let header = document.getElementById("docs-chrome");
   if (header) {
-    header.style.display = header.style.display === "none" ? "block" : "none";
+    // header.style.display = header.style.display === "none" ? "block" : "none";
+    if (header.style.display === "none") {
+      header.style.display = "block";
+      exitFullScreen();
+    } else {
+      header.style.display = "none";
+      document.getElementById("speakernotes-dragger").style.top = "1000px";
+      document.getElementById("speakernotes").style.height = "0";
+      enterFullScreen();
+    }
   }
 });
 
@@ -72,7 +112,7 @@ toggleButton.addEventListener("mouseout", () => {
   toggleButton.classList.remove("goog-custom-button-hover");
 });
 
-toggleButton.addEventListener("focus", () => {
+toggleButton.addEventListener("active", () => {
   toggleButton.classList.add("goog-custom-button-focused");
 });
 
