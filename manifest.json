@@ -10,5 +10,11 @@
     "48": "icons/fullscreen.svg"
   },
 
-  "permissions": ["activeTab", "scipting"]
+  "permissions": ["activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["*://docs.google.com/presentation/*"],
+      "js": ["app.js"]
+    }
+  ]
 }
