@@ -1,5 +1,3 @@
-const bottomToolbar = document.querySelector("#filmstrip-controls > div");
-
 let fullscreenBtn = document.createElement("div");
 
 // Create the main container div
@@ -36,6 +34,9 @@ const svgString = `
 <svg id="collapse-filmstrip" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
   <path d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z" fill="#444746"/>
 </svg>
+<svg id="expand-filmstrip" display="none" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
+  <path d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z" fill="#444746"/>
+</svg>
 `;
 
 // Insert the SVG
@@ -49,7 +50,9 @@ toggleButton.appendChild(outerBox);
 // Append toggle button to the main container
 visibilityControlsContainer.appendChild(toggleButton);
 
-// Append the entire container to the body or any target element
+// Append the entire container to the ToolBar below
+const bottomToolbar = document.querySelector("#filmstrip-controls > div");
+
 if (bottomToolbar) {
   bottomToolbar.appendChild(visibilityControlsContainer);
 }
@@ -86,6 +89,8 @@ function exitFullScreen() {
     document.msExitFullscreen();
   }
 }
+
+// -----------------------------------------------------------------------------------
 
 toggleButton.addEventListener("click", () => {
   let header = document.getElementById("docs-chrome");
