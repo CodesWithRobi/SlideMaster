@@ -7,7 +7,10 @@
   "homepage_url": "https://github.com/CodesWithRobi/SlideMaster",
 
   "icons": {
-    "48": "icons/fullscreen.svg"
+    "16": "icons/fullscreen16.png",
+    "32": "icons/fullscreen32.png",
+    "48": "icons/fullscreen48.png",
+    "128": "icons/fullscreen128.png"
   },
 
   "permissions": ["activeTab", "scripting"],
